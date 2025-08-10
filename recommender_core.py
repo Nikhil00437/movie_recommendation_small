@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import re # For cleaning movie titles if needed
 
-# In recommender_core.py, modify get_movies_dataframe()
+
 def get_movies_dataframe():
     client = MongoClient('localhost', 27017)
     db = client.Movies_DB
@@ -12,7 +12,7 @@ def get_movies_dataframe():
 
     print("Fetching movies from MongoDB...")
 
-    # --- ADD THIS LINE TO LIMIT THE NUMBER OF MOVIES ---
+    # THIS LINE TO LIMIT THE NUMBER OF MOVIES ---
     # For example, to use only the first 10,000 movies
     movies_data = list(collection.find({}).limit(10000)) 
     # For 10,000 movies, the matrix would be 10000*10000*8 bytes = 0.8 GB (manageable)
@@ -166,4 +166,5 @@ if __name__ == "__main__":
         for i, movie in enumerate(recommendations_4):
             print(f"{i+1}. {movie}")
     else:
+
         print("Cannot run recommendation core without movie data. Please load data first.")
